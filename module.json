@@ -1,0 +1,12 @@
+{
+	"name": "npc-message-silencer",
+	"description": "Silences incoming NPC dialog & balloon messages based on configured entries",
+	"options": {
+		"cliName": "NPC-MS",
+		"guiName": "NPC Message Silencer",
+		"settingsVersion": 1,
+		"settingsFile": "./lib/config.json",
+		"settingsMigrator": "./lib/config_generator.js",
+		"reloadable": true
+	}
+}
