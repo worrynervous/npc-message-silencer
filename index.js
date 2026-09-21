@@ -2,7 +2,7 @@ module.exports = class mod {
 	constructor(mod) {
 		mod.loadSettings()
 
-		const balloonDenylist = new Set(require("./lib/npcBalloonData.json").map(String))
+		const balloonAllowList = new Set(require("./lib/npcBalloonData.json").map(String))
 
 		const colors = {
 			yellow: "#e8dd13",
@@ -58,7 +58,7 @@ module.exports = class mod {
 
 		mod.hook("S_QUEST_BALLOON", "*", { order: 10, filter: { fake: null, modified: null, silenced: false } }, (event) => {
 			const shouldOverride = mod.settings.dungeonOverrideEnabled && mod.game.me.inDungeon
-			if (mod.settings.balloonEnabled && balloonDenylist.has(event.message.match(/@monsterBehavior:(\d+)/)?.[1]) && !shouldOverride) return false
+			if (mod.settings.balloonEnabled && !balloonAllowList.has(event.message.match(/@monsterBehavior:(\d+)/)?.[1]) && !shouldOverride) return false
 		})
 
 		mod.hook("S_DIALOG", "*", (event) => {
